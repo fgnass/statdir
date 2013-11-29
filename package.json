@@ -1,0 +1,24 @@
+{
+  "name": "statdir",
+  "version": "1.0.0",
+  "description": "collect stats for all files in a directory",
+  "author": "Felix Gnass",
+  "keywords": [
+    "fs",
+    "stat",
+    "directory"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/fgnass/statdir.git"
+  },
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "should": "~2.1.0"
+  }
+}
