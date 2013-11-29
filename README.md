@@ -3,6 +3,7 @@
 Asynchronously collect the `fs.Stats` for all files in a directory.
 The function is non-recursive.
 
+[![Build Status](https://travis-ci.org/fgnass/statdir.png?branch=master)](https://travis-ci.org/fgnass/statdir)
 ### Usage
 
 ```js
