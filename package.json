@@ -1,6 +1,6 @@
 {
   "name": "statdir",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "collect stats for all files in a directory",
   "author": "Felix Gnass",
   "keywords": [
