@@ -8,7 +8,7 @@ describe('statdir', function() {
     statdir(__dirname + '/fixture', function(err, files) {
       files.should.have.length(2)
       var names = files.map(function(f) {
-        f.should.have.property('file')
+        f.should.have.property('path')
         f.should.have.property('name')
         f.should.have.property('stat')
         return f.name
@@ -30,9 +30,9 @@ describe('statdir', function() {
   it('should compare stats', function(done) {
     statdir(__dirname + '/fixture', function(err, stats) {
       statdir.diff(undefined, stats).should.eql({ added: stats })
-      var fake = stats.map(function(f) { return new File(f.file, f.name, f.stat) } )
+      var fake = stats.map(function(f) { return new File(f.path, f.name, f.stat) } )
       fake[0].name += 'baz'
-      fake[0].file += 'baz'
+      fake[0].path += 'baz'
       fake[1].stat = { mtime: new Date() }
       var diff = statdir.diff(stats, fake)
       diff.added.should.have.length(1)

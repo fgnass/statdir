@@ -16,7 +16,7 @@ The function is non-recursive.
 The callback receives an array of `File` with the following properties:
 
 * `name` The file's basename
-* `file` The file's absolute path
+* `path` The file's absolute path
 * `stat` fs.Stats instance
 
 If a `fs.stat()` call fails the `stat` instance will have an `error` property.
