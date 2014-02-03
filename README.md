@@ -13,12 +13,42 @@ The function is non-recursive.
   })
 ```
 
-The callback receives an array of objects with the following properties:
+The callback receives an array of `File` with the following properties:
 
 * `name` The file's basename
 * `file` The file's absolute path
 * `stat` fs.Stats instance
-*  `err` … or an Error if `fs.stat()` failed for this file
+
+If a `fs.stat()` call fails the `stat` instance will have an `error` property.
+File objects have a `toString()` method that returns the absolute path.
+
+### Comparing snapshots
+
+You can call `statdir.diff()` to compare two directory snapshots. The function
+returns an object with all `added`, `removed` and `changed` files.
+
+```js
+  var statdir = require('statdir')
+  var dir = '/some/directory'
+
+  statdir(dir, function(err, stats1) {
+
+    // wait 10s and take another snapshot ...
+    setTimeout(function() {
+
+      statdir(dir, function(err, stats2) {
+
+        // compare the two arrays:
+        var diff = statdir.diff(stat1, stat2)
+
+        console.log(diff.added)
+        console.log(diff.removed)
+        console.log(diff.changed)
+      })
+
+    }, 10000)
+  })
+```
 
 ### The MIT License (MIT)
 

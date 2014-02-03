@@ -1,4 +1,5 @@
 var statdir = require('..')
+  , File = statdir.File
   , should = require('should')
 
 describe('statdir', function() {
@@ -22,6 +23,21 @@ describe('statdir', function() {
     statdir(__dirname + '/foo', function(err, files) {
       should.exist(err)
       err.code.should.equal('ENOENT')
+      done()
+    })
+  })
+
+  it('should compare stats', function(done) {
+    statdir(__dirname + '/fixture', function(err, stats) {
+      statdir.diff(undefined, stats).should.eql({ added: stats })
+      var fake = stats.map(function(f) { return new File(f.file, f.name, f.stat) } )
+      fake[0].name += 'baz'
+      fake[0].file += 'baz'
+      fake[1].stat = { mtime: new Date() }
+      var diff = statdir.diff(stats, fake)
+      diff.added.should.have.length(1)
+      diff.removed.should.have.length(1)
+      diff.changed.should.have.length(1)
       done()
     })
   })
